@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+.medical-header{
+background:linear-gradient(135deg,#1e3a8a,#2563eb);
+color:white;
+padding:60px 40px;
+border-radius:14px;
+margin-bottom:40px;
+}
+
+.tip-card{
+border:none;
+border-radius:14px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+transition:.3s;
+height:100%;
+}
+
+.tip-card:hover{
+transform:translateY(-5px);
+}
+
+.tip-icon{
+font-size:32px;
+color:#2563eb;
+margin-bottom:12px;
+}
+
+.research-box{
+background:#f8fafc;
+border-left:4px solid #2563eb;
+padding:20px;
+border-radius:8px;
+margin-top:40px;
+}
+
+</style>
+
+<div class="container py-5">
+
+<!-- HEADER -->
+
+<div class="medical-header">
+
+<h2 class="fw-bold mb-3">
+Mental Health Tips for Students
+</h2>
+
+<p class="mb-0">
+Evidence-based mental health practices recommended by psychologists
+and public health organizations to help students manage stress,
+anxiety and academic pressure.
+</p>
+
+</div>
+
+
+<!-- TIPS GRID -->
+
+<div class="row g-4">
+
+<div class="col-md-6 col-lg-4">
+
+<div class="card tip-card p-4">
+
+<div class="tip-icon">
+🧘
+</div>
+
+<h5 class="fw-bold">Practice Mindfulness</h5>
+
+<p class="text-muted">
+Mindfulness meditation has been shown to reduce anxiety and improve emotional
+regulation. Even 10 minutes of daily mindfulness practice can significantly
+improve mental well-being.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-6 col-lg-4">
+
+<div class="card tip-card p-4">
+
+<div class="tip-icon">
+😴
+</div>
+
+<h5 class="fw-bold">Maintain Healthy Sleep</h5>
+
+<p class="text-muted">
+Sleep deprivation increases stress hormones and reduces cognitive performance.
+Students should aim for 7–9 hours of quality sleep each night.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-6 col-lg-4">
+
+<div class="card tip-card p-4">
+
+<div class="tip-icon">
+🏃
+</div>
+
+<h5 class="fw-bold">Regular Physical Activity</h5>
+
+<p class="text-muted">
+Exercise releases endorphins and improves mood. Research suggests that
+150 minutes of moderate physical activity per week supports mental health.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-6 col-lg-4">
+
+<div class="card tip-card p-4">
+
+<div class="tip-icon">
+💬
+</div>
+
+<h5 class="fw-bold">Talk to Someone</h5>
+
+<p class="text-muted">
+Sharing concerns with trusted friends, family members or counselors
+helps reduce emotional burden and improves coping ability.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-6 col-lg-4">
+
+<div class="card tip-card p-4">
+
+<div class="tip-icon">
+📚
+</div>
+
+<h5 class="fw-bold">Manage Academic Stress</h5>
+
+<p class="text-muted">
+Effective time management, structured study routines and regular
+breaks can reduce academic burnout and cognitive fatigue.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-6 col-lg-4">
+
+<div class="card tip-card p-4">
+
+<div class="tip-icon">
+🌿
+</div>
+
+<h5 class="fw-bold">Practice Self-Care</h5>
+
+<p class="text-muted">
+Self-care activities such as journaling, relaxation exercises
+and hobbies help maintain emotional balance.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- RESEARCH BOX -->
+
+<div class="research-box">
+
+<h5 class="fw-bold mb-2">Research & Medical Guidance</h5>
+
+<p class="mb-0 text-muted">
+These recommendations are aligned with guidelines from organizations
+such as the World Health Organization (WHO), American Psychological
+Association (APA) and global student mental health research studies.
+Early detection and proactive mental wellness strategies can significantly
+reduce the risk of anxiety, depression and academic burnout.
+</p>
+
+</div>
+
+
+</div>
+
+{% endblock %}

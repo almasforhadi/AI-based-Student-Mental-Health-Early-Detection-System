@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <!-- 🔷 PAGE HEADER -->
+    <div class="mb-4">
+        <h2 class="fw-bold">📊 Admin Dashboard</h2>
+        <p class="text-muted">Mental Health System Overview</p>
+    </div>
+
+    <!-- 🔷 STATS CARDS -->
+    <div class="row g-3 mb-4">
+
+        <div class="col-md-3">
+            <div class="card shadow-sm p-3 text-center">
+                <h6>Total Responses</h6>
+                <h3>{{ total }}</h3>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm p-3 text-center border-danger">
+                <h6 class="text-danger">High Risk</h6>
+                <h3 class="text-danger">{{ high_count }}</h3>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm p-3 text-center border-warning">
+                <h6 class="text-warning">Medium Risk</h6>
+                <h3 class="text-warning">{{ medium_count }}</h3>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm p-3 text-center border-success">
+                <h6 class="text-success">Low Risk</h6>
+                <h3 class="text-success">{{ low_count }}</h3>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 🔷 HIGH RISK TABLE -->
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-danger text-white fw-bold">
+            ⚠️ High Risk Students
+        </div>
+
+        <div class="card-body">
+
+            {% if high_risk %}
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle text-center">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Username</th>
+                            <th>Score</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for s in high_risk %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+
+                            <td class="fw-semibold">
+                                {{ s.user.username }}
+                            </td>
+
+                            <td>
+                                <span class="badge bg-danger px-3 py-2">
+                                    {{ s.score }}
+                                </span>
+                            </td>
+
+                            <td>
+                                {{ s.created_at|date:"d M Y" }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+
+            </div>
+            {% else %}
+                <div class="text-center py-4">
+                    <p class="text-muted">No high risk students found</p>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

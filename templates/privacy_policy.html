@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+.policy-header{
+background:linear-gradient(135deg,#1e3a8a,#2563eb);
+color:white;
+padding:60px 40px;
+border-radius:14px;
+margin-bottom:40px;
+}
+
+.policy-section{
+background:#ffffff;
+padding:25px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+margin-bottom:20px;
+}
+
+.policy-title{
+font-weight:600;
+margin-bottom:10px;
+}
+
+.policy-text{
+color:#475569;
+line-height:1.7;
+}
+
+.policy-note{
+background:#f8fafc;
+border-left:4px solid #2563eb;
+padding:20px;
+border-radius:8px;
+margin-top:30px;
+}
+
+</style>
+
+
+<div class="container py-5">
+
+<!-- HEADER -->
+
+<div class="policy-header">
+
+<h2 class="fw-bold mb-3">
+Privacy Policy
+</h2>
+
+<p class="mb-0">
+Your privacy and data protection are extremely important to us.
+This policy explains how the Mental Health AI platform collects,
+uses and protects user information.
+</p>
+
+</div>
+
+
+<!-- SECTION 1 -->
+
+<div class="policy-section">
+
+<h5 class="policy-title">Information We Collect</h5>
+
+<p class="policy-text">
+Our platform collects limited information necessary to perform
+mental health assessments and improve the accuracy of our AI
+detection system. This may include survey responses, basic
+account information and anonymized usage data.
+</p>
+
+</div>
+
+
+<!-- SECTION 2 -->
+
+<div class="policy-section">
+
+<h5 class="policy-title">How We Use Your Data</h5>
+
+<p class="policy-text">
+Collected information is used exclusively for mental health
+analysis, research insights and improving the performance
+of the AI detection model. Your responses help us understand
+behavioral patterns related to stress, anxiety and depression.
+</p>
+
+</div>
+
+
+<!-- SECTION 3 -->
+
+<div class="policy-section">
+
+<h5 class="policy-title">Data Protection & Security</h5>
+
+<p class="policy-text">
+We implement strong technical and organizational measures
+to protect your personal data from unauthorized access,
+misuse or disclosure. All sensitive information is stored
+securely using modern data protection practices.
+</p>
+
+</div>
+
+
+<!-- SECTION 4 -->
+
+<div class="policy-section">
+
+<h5 class="policy-title">User Privacy Rights</h5>
+
+<p class="policy-text">
+Users have the right to request access to their data,
+update personal information or request deletion of
+their account data at any time.
+</p>
+
+</div>
+
+
+<!-- NOTE -->
+
+<div class="policy-note">
+
+<strong>Research & Ethical Use</strong>
+
+<p class="mb-0">
+The Mental Health AI platform is designed for research
+and early mental health awareness. All collected data
+is handled ethically and in compliance with responsible
+AI and privacy standards.
+</p>
+
+</div>
+
+</div>
+
+{% endblock %}

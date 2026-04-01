@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health AI</title>
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- fontawesome -->
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" rel="stylesheet">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/brands.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- NAVBAR -->
+ <nav class="navbar navbar-expand-lg navbar-dark custom-navbar sticky-top">
+<div class="container">
+
+<a class="navbar-brand fw-bold" href="/">
+ Mental Health AI
+</a>
+
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navbarNav">
+
+<ul class="navbar-nav me-auto">
+
+<li class="nav-item">
+<a class="nav-link" href="/">Home</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="/survey/">Survey</a>
+</li>
+
+{% if user.is_superuser %}
+<li class="nav-item">
+<a class="nav-link admin-link" href="/admin-panel/">Admin Panel</a>
+</li>
+{% endif %}
+
+</ul>
+
+
+<ul class="navbar-nav ms-auto">
+
+{% if user.is_authenticated %}
+
+<li class="nav-item dropdown">
+
+<a class="nav-link dropdown-toggle profile-btn"
+href="#"
+data-bs-toggle="dropdown">
+
+<i class="fa-solid fa-circle-user"></i> {{ user.username }}
+
+</a>
+
+<ul class="dropdown-menu dropdown-menu-end profile-menu">
+
+<li>
+<a class="dropdown-item" href="/dashboard/">📊 Dashboard</a>
+</li>
+
+<li>
+<a class="dropdown-item" href="/report/">📄 Report</a>
+</li>
+
+<li><hr class="dropdown-divider"></li>
+
+<li>
+<a class="dropdown-item text-danger" href="/logout/"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+</li>
+
+</ul>
+
+</li>
+
+{% else %}
+
+<li class="nav-item">
+<a class="nav-link login-btn" href="/login/">Login</a>
+</li>
+
+<li class="nav-item">
+<a class="btn btn-primary ms-2 register-btn" href="/register/">
+Register
+</a>
+</li>
+
+{% endif %}
+
+</ul>
+
+</div>
+</div>
+</nav>
+
+    <!-- CONTENT -->
+    <div class="container mt-4">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer-section mt-5">
+
+<div class="container">
+
+<div class="row g-4">
+
+<!-- ABOUT -->
+<div class="col-lg-4 col-md-6">
+
+<h5 class="footer-title">
+<i class="fa-solid fa-brain me-2"></i> Mental Health AI
+</h5>
+
+<p class="footer-text">
+AI powered platform designed to detect early mental health risks among
+students and provide personalized wellness insights.
+</p>
+
+<div class="social-icons">
+
+<a href="https://www.facebook.com/groups/781137761129214" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook"></i></a>
+<a href="https://www.youtube.com/@UCSFPsychiatry" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube"></i></a>
+<a href="https://www.linkedin.com/company/ai-mental-health-collective/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
+
+</div>
+
+</div>
+
+
+<!-- QUICK LINKS -->
+<div class="col-lg-2 col-md-6">
+
+<h6 class="footer-heading">Quick Links</h6>
+
+<ul class="footer-links">
+
+<li><a href="/">Home</a></li>
+<li><a href="/survey/">Survey</a></li>
+<li><a href="/dashboard/">Dashboard</a></li>
+<li><a href="/report/">Report</a></li>
+
+</ul>
+
+</div>
+
+
+<!-- PLATFORM -->
+<div class="col-lg-3 col-md-6">
+
+<h6 class="footer-heading">Platform</h6>
+
+<ul class="footer-links">
+
+<li><a href="{% url 'mental_health_tips' %}">Mental Health Tips</a></li>
+<li><a href="{% url 'student_support' %}">Student Support</a></li>
+<li><a href="{% url 'privacy_policy' %}">Privacy Policy</a></li>
+
+</ul>
+
+</div>
+
+
+<!-- CONTACT -->
+<div class="col-lg-3 col-md-6">
+
+<h6 class="footer-heading">Contact</h6>
+
+<ul class="footer-contact">
+
+<li>
+<i class="fa-solid fa-envelope me-2"></i>
+support@mentalai.com
+</li>
+
+<li>
+<i class="fa-solid fa-location-dot me-2"></i>
+Dhaka, Bangladesh
+</li>
+
+<li>
+<i class="fa-solid fa-phone me-2"></i>
++880 1234-567890
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- COPYRIGHT BAR -->
+
+<div class="footer-bottom">
+
+<div class="container text-center">
+
+<p class="mb-0">
+© 2026 Mental Health AI — All Rights Reserved
+</p>
+
+</div>
+
+</div>
+
+</footer>
+
+
+
+<style>
+.custom-navbar{
+background: rgba(20,20,20,0.85);
+backdrop-filter: blur(12px);
+box-shadow:0 4px 20px rgba(0,0,0,0.2);
+padding:12px 0;
+}
+
+
+.navbar-nav .nav-link{
+font-weight:500;
+color:#ddd;
+margin-right:10px;
+}
+
+.navbar-nav .nav-link:hover{
+color:#fff;
+}
+
+.navbar-brand{
+font-size:22px;
+font-weight:700;
+background:linear-gradient(90deg,#38bdf8,#60a5fa,#a78bfa);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+letter-spacing:.5px;
+}
+.navbar-brand:hover{
+background:linear-gradient(90deg,#22d3ee,#3b82f6,#8b5cf6);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.admin-link{
+color:#ffc107 !important;
+font-weight:600;
+}
+
+
+.register-btn{
+border-radius:30px;
+padding:6px 18px;
+font-weight:500;
+}
+
+
+.profile-btn{
+font-weight:500;
+}
+
+
+.profile-menu{
+border-radius:12px;
+border:none;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+padding:8px;
+}
+
+.profile-menu .dropdown-item{
+border-radius:8px;
+padding:8px 14px;
+transition:.2s;
+}
+
+.profile-menu .dropdown-item:hover{
+background:#f1f5f9;
+}
+
+/* ========= FOOTER ========== */
+
+.footer-section{
+background:#0f172a;
+color:#cbd5f1;
+padding:60px 0 0 0;
+}
+
+.footer-title{
+color:#fff;
+font-weight:700;
+margin-bottom:15px;
+}
+
+.footer-text{
+font-size:14px;
+line-height:1.6;
+}
+
+
+.footer-heading{
+color:#fff;
+margin-bottom:15px;
+font-weight:600;
+}
+
+
+.footer-links{
+list-style:none;
+padding:0;
+}
+
+.footer-links li{
+margin-bottom:8px;
+}
+
+.footer-links a{
+color:#cbd5f1;
+text-decoration:none;
+font-size:14px;
+transition:.3s;
+}
+
+.footer-links a:hover{
+color:#38bdf8;
+padding-left:4px;
+}
+
+
+.footer-contact{
+list-style:none;
+padding:0;
+font-size:14px;
+}
+
+.footer-contact li{
+margin-bottom:10px;
+}
+
+
+.social-icons a{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+width:38px;
+height:38px;
+margin-right:8px;
+border-radius:50%;
+background:#1e293b;
+color:#fff;
+transition:.3s;
+text-decoration:none;
+}
+
+.social-icons a:hover{
+background:#3b82f6;
+transform:translateY(-3px);
+}
+
+
+.footer-bottom{
+margin-top:40px;
+padding:18px 0;
+background:#020617;
+font-size:14px;
+}
+</style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.querySelectorAll('.dropdown').forEach(function(dropdown){
+
+let timer;
+
+dropdown.addEventListener('mouseenter', function(){
+
+clearTimeout(timer);
+dropdown.classList.add('show');
+dropdown.querySelector('.dropdown-menu').classList.add('show');
+
+});
+
+dropdown.addEventListener('mouseleave', function(){
+
+timer=setTimeout(()=>{
+
+dropdown.classList.remove('show');
+dropdown.querySelector('.dropdown-menu').classList.remove('show');
+
+},150);
+
+});
+
+});
+</script>
+</body>
+
+</html>

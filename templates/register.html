@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<!-- Flex container to push footer down -->
+<div class="d-flex flex-column min-vh-100">
+
+  <div class="container py-5 flex-grow-1">
+    <h2>Register</h2>
+
+    <form method="POST">
+      {% csrf_token %}
+       
+      <!--{{form | crispy}}-->
+      {% for fm in form %}
+        <div class="mb-3">
+          {{ fm.label_tag }}
+          {{ fm }}
+          {{ fm.errors }}
+        </div>
+      {% endfor %}
+
+      <button class="btn btn-success">Register</button>
+    </form>
+  </div>
+
+</div>
+
+{% endblock %}

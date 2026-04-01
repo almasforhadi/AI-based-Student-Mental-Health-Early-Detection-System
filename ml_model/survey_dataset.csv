@@ -1,0 +1,11 @@
+sleep_hours,device_usage,interest,anxiety,social_feeling,self_rating,risk_level
+2,2,2,3,4,5,High
+2,2,1,1,2,5,Medium
+2,3,2,1,4,8,Medium
+4,1,2,0,3,10,Low
+2,2,1,1,2,5,Medium
+2,2,1,1,2,5,Medium
+3,1,2,0,3,8,Low
+2,1,1,0,2,5,Low
+1,3,3,0,4,8,Medium
+1,2,0,1,2,2,Medium

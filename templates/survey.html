@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-4 text-center">🧠 Student Mental Health Survey</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    {% for field in form %}
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+
+            <!-- Question -->
+            <h5 class="mb-3 fw-semibold">
+                {{ forloop.counter }}. {{ field.label }}
+            </h5>
+
+            <!-- Options -->
+            <div class="row g-2">
+                {% for value, label in field.field.choices %}
+                <div class="col-md-6 col-12">
+                    <label class="option-card">
+                        <input type="radio" name="{{ field.name }}" value="{{ value }}"
+                            {% if field.value == value|stringformat:"s" %}checked{% endif %}>
+                        <span class="option-text">{{ label }}</span>
+                    </label>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Field Errors -->
+            {% if field.errors %}
+            <div class="text-danger small mt-1">
+                {{ field.errors }}
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="text-center mb-5">
+        <button type="submit" class="btn btn-primary px-5 py-2 fw-semibold">Submit Survey</button>
+    </div>
+
+</form>
+
+<style>
+.option-card {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    cursor: pointer;
+    background: #fff;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+
+.option-card input[type="radio"] {
+    display: none;
+}
+
+
+.option-card:hover {
+    background-color: #f0f6ff;
+    border-color: #0d6efd;
+}
+
+
+.option-card:has(input[type="radio"]:checked) {
+    background-color: #e7f1ff;   /* light blue */
+    color: #0d6efd;              /* primary blue text */
+    border-color: #0d6efd;
+}
+
+
+.option-text {
+    width: 100%;
+}
+
+.option-card,
+.option-text {
+    box-sizing: border-box;
+}
+</style>
+{% endblock %}

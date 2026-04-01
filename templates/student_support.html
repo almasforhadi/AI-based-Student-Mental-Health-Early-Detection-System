@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+.support-header{
+background:linear-gradient(135deg,#1e40af,#3b82f6);
+color:white;
+padding:60px 40px;
+border-radius:14px;
+margin-bottom:40px;
+}
+
+.support-card{
+border:none;
+border-radius:14px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+padding:25px;
+transition:.3s;
+height:100%;
+}
+
+.support-card:hover{
+transform:translateY(-5px);
+}
+
+.support-icon{
+font-size:30px;
+color:#2563eb;
+margin-bottom:12px;
+}
+
+.help-box{
+background:#f8fafc;
+border-left:4px solid #2563eb;
+padding:20px;
+border-radius:8px;
+margin-top:40px;
+}
+
+</style>
+
+<div class="container py-5">
+
+<!-- HEADER -->
+
+<div class="support-header">
+
+<h2 class="fw-bold mb-3">
+Student Mental Health Support
+</h2>
+
+<p class="mb-0">
+University life can bring academic pressure, emotional challenges
+and stress. Our platform offers AI-powered tools and resources
+to support students in maintaining healthy mental well-being.
+</p>
+
+</div>
+
+
+<!-- SUPPORT RESOURCES -->
+
+<div class="row g-4">
+
+<div class="col-md-6 col-lg-3">
+
+<div class="support-card">
+
+<div class="support-icon">🧠</div>
+
+<h5 class="fw-bold">Mental Health Assessment</h5>
+
+<p class="text-muted">
+Scientifically designed surveys help identify early signs
+of stress, anxiety and depression among students.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-6 col-lg-3">
+
+<div class="support-card">
+
+<div class="support-icon">🤖</div>
+
+<h5 class="fw-bold">AI Stress Detection</h5>
+
+<p class="text-muted">
+Our AI system analyzes responses and predicts
+potential mental health risks using intelligent models.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-6 col-lg-3">
+
+<div class="support-card">
+
+<div class="support-icon">💡</div>
+
+<h5 class="fw-bold">Wellness Recommendations</h5>
+
+<p class="text-muted">
+Students receive personalized suggestions including
+stress management techniques and self-care practices.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-6 col-lg-3">
+
+<div class="support-card">
+
+<div class="support-icon">📚</div>
+
+<h5 class="fw-bold">Support Resources</h5>
+
+<p class="text-muted">
+Access helpful materials and guidance related
+to student mental health and emotional well-being.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- HELP NOTE -->
+
+<div class="help-box">
+
+<h5 class="fw-bold mb-2">When to Seek Help</h5>
+
+<p class="text-muted mb-0">
+If you are experiencing persistent stress, anxiety,
+sleep problems or emotional distress, consider
+speaking with a counselor, trusted mentor or
+mental health professional. Early support can
+significantly improve mental well-being and
+academic performance.
+</p>
+
+</div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,243 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container py-4">
+
+<h2 class="mb-4 fw-bold">🧠 Mental Health Analytics Dashboard</h2>
+
+{% if no_data %}
+
+<div class="alert alert-info">
+⚠️ No survey data found. Please complete the survey first.
+</div>
+
+<a href="/survey/" class="btn btn-primary">Take Survey</a>
+
+{% else %}
+
+<p class="text-muted">
+Last Updated: {{ data.created_at|date:"M d, Y H:i" }}
+</p>
+
+<div class="row g-4">
+
+<!-- Risk Card -->
+<div class="col-md-4">
+
+<div class="card shadow-sm p-4 text-center">
+
+<h5 class="mb-3">Risk Level</h5>
+
+{% if data.risk_level == "High" %}
+<h3 class="text-danger">🔴 High Risk</h3>
+{% elif data.risk_level == "Medium" %}
+<h3 class="text-warning">🟡 Medium Risk</h3>
+{% else %}
+<h3 class="text-success">🟢 Low Risk</h3>
+{% endif %}
+
+<p class="mt-2">Score: <strong>{{ data.score }}</strong></p>
+
+</div>
+
+</div>
+
+
+<!-- Score Progress -->
+<div class="col-md-8">
+
+<div class="card shadow-sm p-4">
+
+<h5 class="mb-3">Mental Health Score</h5>
+
+<div class="progress" style="height:25px">
+
+<div
+class="progress-bar
+{% if data.risk_level == 'High' %}
+bg-danger
+{% elif data.risk_level == 'Medium' %}
+bg-warning
+{% else %}
+bg-success
+{% endif %}"
+
+style="width: {{ data.score }}%">
+
+{{ data.score }}%
+
+</div>
+
+</div>
+
+<p class="text-muted mt-2">
+Higher score indicates higher mental health risk.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- Chart -->
+<div class="card shadow-sm p-4 mt-4">
+
+<h5 class="mb-3">Mental Health Indicators</h5>
+
+<canvas id="riskChart"></canvas>
+
+</div>
+
+
+<!-- Insights -->
+<div class="card shadow-sm p-4 mt-4">
+
+<h5 class="mb-3">📌 AI Insights</h5>
+
+<ul>
+
+{% for key,value in breakdown.items %}
+<li>{{ value }}</li>
+{% empty %}
+<li>No major risk indicators detected.</li>
+{% endfor %}
+
+</ul>
+
+</div>
+
+
+<!-- Summary -->
+<div class="card shadow-sm p-4 mt-4">
+
+<h5 class="mb-3">📊 Behavioral Summary</h5>
+
+<div class="row">
+
+<div class="col-md-4">
+<p><strong>Sleep Hours</strong></p>
+<p>{{ data.sleep_hours }}</p>
+</div>
+
+<div class="col-md-4">
+<p><strong>Device Usage</strong></p>
+<p>{{ data.device_usage }}</p>
+</div>
+
+<div class="col-md-4">
+<p><strong>Anxiety Level</strong></p>
+<p>{{ data.anxiety }}</p>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- Actions -->
+<div class="mt-4">
+
+<a href="/report/" class="btn btn-success">
+⬇ Download Clinical Report
+</a>
+
+<a href="/survey/" class="btn btn-outline-primary ms-2">
+Retake Survey
+</a>
+
+</div>
+
+
+{% if data.risk_level == "High" %}
+
+<div class="alert alert-danger mt-4">
+
+⚠️ High Mental Health Risk Detected.
+
+Please consider consulting a mental health professional.
+
+</div>
+
+{% endif %}
+
+{% endif %}
+
+</div>
+
+
+<style>
+    .card{
+border-radius:12px;
+border:none;
+}
+
+.card h5{
+font-weight:600;
+}
+
+.progress{
+border-radius:20px;
+}
+
+.progress-bar{
+font-weight:bold;
+}
+
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+
+const ctx = document.getElementById('riskChart');
+
+new Chart(ctx, {
+
+type: 'bar',
+
+data: {
+
+labels: [
+'Sleep',
+'Device Usage',
+'Interest',
+'Anxiety',
+'Self Rating'
+],
+
+datasets: [{
+
+label: 'Mental Health Indicators',
+
+data: [
+{{ data.sleep_hours }},
+{{ data.device_usage }},
+{{ data.interest }},
+{{ data.anxiety }},
+{{ data.self_rating }}
+],
+
+borderWidth: 1
+
+}]
+
+},
+
+options: {
+
+scales: {
+
+y: {
+
+beginAtZero: true
+
+}
+}
+}
+
+});
+
+</script>
+{% endblock %}

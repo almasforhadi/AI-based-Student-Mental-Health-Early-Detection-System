@@ -1,0 +1,652 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+
+html{
+scroll-behavior:smooth;
+}
+
+.hero-section{
+background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb);
+color:white;
+padding:110px 0 100px 0;
+position:relative;
+overflow:hidden;
+}
+
+.custom-btn{
+width: 100%;
+}
+
+@media (min-width: 768px){
+.custom-btn{
+width: auto;
+}
+}
+
+#network{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:0;
+}
+
+.hero-section .container{
+position:relative;
+z-index:2;
+}
+
+#particles-js{
+position:absolute;
+width:100%;
+height:100%;
+top:0;
+left:0;
+z-index:0;
+pointer-events:none;
+}
+
+#network{
+z-index:0;
+}
+
+.hero-section .container{
+position:relative;
+z-index:3;
+}
+
+.floating{
+position:absolute;
+opacity:.25;
+font-size:40px;
+animation:float 6s ease-in-out infinite;
+}
+
+.float1{top:20%;left:10%;}
+.float2{top:65%;right:10%;}
+.float3{top:40%;left:50%;}
+
+@keyframes float{
+0%{transform:translateY(0)}
+50%{transform:translateY(-25px)}
+100%{transform:translateY(0)}
+}
+
+
+.section{
+padding: 40px 0;
+}
+
+.glass-card{
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(12px);
+border-radius:18px;
+padding:30px;
+border:3px solid rgba(255,255,255,0.2);
+height:100%;
+}
+
+.glass-card:hover{
+box-shadow:0 15px 35px rgba(0,0,0,0.15);
+}
+
+.feature-icon{
+font-size:32px;
+margin-bottom:15px;
+}
+
+.counter{
+font-size:48px;
+font-weight:700;
+color:#2563eb;
+}
+
+.stats{
+background:#f8fafc;
+}
+
+.cta{
+background:linear-gradient(135deg,#2563eb,#1e40af);
+color:white;
+border-radius:20px;
+padding:60px;
+}
+
+.wave{
+position:absolute;
+bottom:0;
+width:100%;
+}
+
+
+</style>
+
+
+
+<!-- HERO -->
+<section class="hero-section text-center">
+
+<canvas id="network"></canvas>
+<div id="particles-js"></div>
+
+<div class="floating float1">🧠</div>
+<div class="floating float2">⚡</div>
+<div class="floating float3">💡</div>
+
+<div class="container">
+
+<h1 class="display-4 fw-bold mb-4 hero-title">
+AI Mental Health Detection System
+</h1>
+
+<p class="lead mb-4 mx-auto" style="max-width:700px;">
+AI powered platform to detect early symptoms of stress,
+anxiety and depression among university students.
+</p>
+
+<div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
+
+    <a href="/survey/" class="btn btn-light btn-lg px-5 custom-btn">
+        Start Assessment
+    </a>
+
+    <a href="#features" class="btn btn-outline-light btn-lg px-5 custom-btn">
+        Explore Features
+    </a>
+
+</div>
+
+</div>
+
+<!-- wave -->
+<svg class="wave" viewBox="0 0 1440 200">
+<path fill="#ffffff" fill-opacity="1"
+d="M0,96L80,106C160,117,320,139,480,133C640,128,800,96,960,96C1120,96,1280,128,1360,144L1440,160L1440,200L0,200Z">
+</path>
+</svg>
+
+</section>
+
+
+
+<!-- AI SECTION -->
+<section class="section">
+
+<div class="container">
+
+<div class="row align-items-center g-5">
+
+<div class="col-lg-6">
+
+<h2 class="fw-bold mb-3">
+AI Powered Mental Health Analysis
+</h2>
+
+<p class="text-muted mb-4">
+Our intelligent system evaluates behavioral responses from
+scientifically designed surveys to detect mental health risks early.
+</p>
+
+<ul class="text-muted">
+
+<li>✔ AI risk prediction</li>
+<li>✔ Behavioral pattern analysis</li>
+<li>✔ Personalized mental health suggestions</li>
+
+</ul>
+
+</div>
+
+<div class="col-lg-6 text-center">
+
+<lottie-player
+src="https://assets1.lottiefiles.com/packages/lf20_qp1q7mct.json"
+background="transparent"
+speed="1"
+style="width:100%;height:320px"
+loop autoplay>
+</lottie-player>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= AI DEMO SECTION (PRO VERSION) ================= -->
+<section class="section py-5">
+
+<div class="container">
+
+<div class="card shadow-lg border-0 rounded-4 p-5">
+
+    <!-- HEADER -->
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">AI Mental Health Demo</h2>
+        <p class="text-muted">Experience how our AI evaluates your mental health instantly</p>
+    </div>
+
+    <div class="row align-items-center g-5">
+
+        <!-- LEFT SIDE (INPUTS) -->
+        <div class="col-md-6">
+
+            <div class="p-4 rounded-4 bg-light">
+
+                <!-- Stress -->
+                <div class="mb-4">
+                    <label class="fw-semibold">Stress Level</label>
+                    <div class="d-flex justify-content-between small text-muted">
+                        <span>Low</span>
+                        <span>High</span>
+                    </div>
+                    <input type="range" id="stress" class="form-range" min="0" max="10">
+                </div>
+
+                <!-- Sleep -->
+                <div class="mb-4">
+                    <label class="fw-semibold">Sleep Quality</label>
+                    <div class="d-flex justify-content-between small text-muted">
+                        <span>Poor</span>
+                        <span>Excellent</span>
+                    </div>
+                    <input type="range" id="sleep" class="form-range" min="0" max="10">
+                </div>
+
+                <!-- Pressure -->
+                <div class="mb-4">
+                    <label class="fw-semibold">Academic Pressure</label>
+                    <div class="d-flex justify-content-between small text-muted">
+                        <span>Low</span>
+                        <span>High</span>
+                    </div>
+                    <input type="range" id="pressure" class="form-range" min="0" max="10">
+                </div>
+
+                <!-- BUTTON -->
+                <button onclick="predict()" class="btn btn-primary w-100 py-2 fw-semibold">
+                    Run AI Prediction
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE (RESULT CARD) -->
+        <div class="col-md-6">
+
+            <div class="p-5 rounded-4 text-center shadow-sm border bg-white">
+
+                <h6 class="text-muted mb-3">Prediction Result</h6>
+
+                <h3 id="result" class="fw-bold mb-3">
+                    Waiting for input...
+                </h3>
+
+                <!-- Progress Bar -->
+                <div class="progress mt-4" style="height:10px;">
+                    <div id="progressBar" class="progress-bar bg-primary" style="width:0%"></div>
+                </div>
+
+                <p class="small text-muted mt-3">
+                    AI confidence level based on your inputs
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= FEATURES SECTION ================= -->
+<section id="features" class="section py-5">
+
+<div class="container">
+
+<!-- FEATURES BOX -->
+<div class="card shadow-lg border-0 rounded-4 p-4">
+
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">Platform Features</h2>
+        <p class="text-muted">
+            Powerful tools designed to monitor and improve student mental health
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="glass-card shadow-lg border-1 text-center">
+                <div class="feature-icon">📝</div>
+                <h5>Smart Survey</h5>
+                <p class="text-muted">Scientifically designed mental health questionnaire.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="glass-card shadow-lg border-1 text-center">
+                <div class="feature-icon">⚡</div>
+                <h5>Real-time Detection</h5>
+                <p class="text-muted">Instant AI based mental health analysis.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="glass-card shadow-lg border-1 text-center">
+                <div class="feature-icon">📊</div>
+                <h5>Dashboard</h5>
+                <p class="text-muted">Interactive analytics dashboard.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="glass-card shadow-lg border-1 text-center">
+                <div class="feature-icon">🚨</div>
+                <h5>Risk Alerts</h5>
+                <p class="text-muted">Immediate alerts for high risk cases.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="glass-card shadow-lg border-1 text-center">
+                <div class="feature-icon">📄</div>
+                <h5>PDF Reports</h5>
+                <p class="text-muted">Download detailed mental health reports.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="glass-card shadow-lg border-1 text-center">
+                <div class="feature-icon">🤖</div>
+                <h5>AI Suggestions</h5>
+                <p class="text-muted">Personalized wellness recommendations.</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- STATS -->
+<section class="section stats text-center">
+
+<div class="container">
+
+<div class="row g-4">
+
+<div class="col-md-4">
+<div class="counter" data-target="200">0</div>
+<p class="text-muted">Students Assessed</p>
+</div>
+
+<div class="col-md-4">
+<div class="counter" data-target="95">0</div>
+<p class="text-muted">Detection Accuracy %</p>
+</div>
+
+<div class="col-md-4">
+<div class="counter" data-target="24">0</div>
+<p class="text-muted">System Availability</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- CTA -->
+<section class="section">
+
+<div class="container text-center">
+
+<div class="cta">
+
+<h2 class="fw-bold mb-3">
+Start Your Mental Health Assessment
+</h2>
+
+<p class="mb-4">
+Early detection helps prevent serious mental health issues.
+</p>
+
+<a href="/survey/" class="btn btn-light btn-lg px-5">
+Start Survey
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- COUNTER SCRIPT -->
+<script>
+const counters = document.querySelectorAll(".counter");
+
+const startCounter = (counter) => {
+    counter.innerText = "0";
+
+    const target = +counter.getAttribute("data-target");
+    let count = 0;
+
+    const step = target / 200;
+
+    const update = () => {
+        count += step;
+
+        if (count < target) {
+            counter.innerText = Math.ceil(count);
+            requestAnimationFrame(update);
+        } else {
+            // 👇 এখানে + add করলাম
+            if(target === 200){
+                counter.innerText = target + "+";
+            } else {
+                counter.innerText = target;
+            }
+        }
+    };
+
+    update();
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            startCounter(entry.target);
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.6 });
+
+counters.forEach(counter => {
+    observer.observe(counter);
+});
+</script>
+<script>
+
+const canvas = document.getElementById("network");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for(let i=0;i<80;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+vx:(Math.random()-0.5)*1,
+vy:(Math.random()-0.5)*1
+});
+}
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+particles.forEach(p=>{
+
+p.x+=p.vx;
+p.y+=p.vy;
+
+if(p.x<0||p.x>canvas.width)p.vx*=-1;
+if(p.y<0||p.y>canvas.height)p.vy*=-1;
+
+ctx.beginPath();
+ctx.arc(p.x,p.y,2,0,Math.PI*2);
+ctx.fillStyle="white";
+ctx.fill();
+
+particles.forEach(p2=>{
+
+let dx=p.x-p2.x;
+let dy=p.y-p2.y;
+let dist=Math.sqrt(dx*dx+dy*dy);
+
+if(dist<120){
+
+ctx.beginPath();
+ctx.moveTo(p.x,p.y);
+ctx.lineTo(p2.x,p2.y);
+ctx.strokeStyle="rgba(255,255,255,0.1)";
+ctx.stroke();
+
+}
+
+});
+
+});
+
+requestAnimationFrame(draw);
+
+}
+
+draw();
+
+</script>
+<script>
+
+particlesJS("particles-js", {
+
+particles:{
+
+number:{value:60},
+
+size:{value:3},
+
+move:{speed:2},
+
+line_linked:{
+enable:true,
+distance:120,
+color:"#ffffff",
+opacity:0.2
+}
+
+}
+
+});
+
+</script>
+<script>
+
+ScrollReveal().reveal('.glass-card',{
+delay:200,
+distance:'40px',
+origin:'bottom',
+duration:800,
+interval:150
+});
+
+ScrollReveal().reveal('.section',{
+delay:200,
+distance:'60px',
+origin:'bottom',
+duration:1000
+});
+
+</script>
+<script>
+
+const hero=document.querySelector(".hero-title");
+
+hero.addEventListener("mousemove",(e)=>{
+
+let x=(window.innerWidth/2-e.pageX)/25;
+let y=(window.innerHeight/2-e.pageY)/25;
+
+hero.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
+
+});
+
+hero.addEventListener("mouseleave",()=>{
+hero.style.transform="rotateY(0) rotateX(0)";
+});
+
+</script>
+<script>
+
+function predict(){
+
+let stress = document.getElementById("stress").value;
+let sleep = document.getElementById("sleep").value;
+let pressure = document.getElementById("pressure").value;
+
+let score = (stress*0.4) + (pressure*0.4) - (sleep*0.2);
+
+let result = "";
+let percent = 0;
+
+if(score > 6){
+    result = "⚠ High Risk of Stress";
+    percent = 90;
+}
+else if(score > 3){
+    result = "⚡ Moderate Mental Stress";
+    percent = 60;
+}
+else{
+    result = "✅ Mental Health Stable";
+    percent = 30;
+}
+
+document.getElementById("result").innerText = result;
+
+// Progress animation
+let bar = document.getElementById("progressBar");
+bar.style.width = percent + "%";
+}
+</script>
+
+<script src="https://unpkg.com/scrollreveal"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+{% endblock %}
